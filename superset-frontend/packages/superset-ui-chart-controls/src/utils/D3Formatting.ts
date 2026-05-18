@@ -53,6 +53,12 @@ const d3Formatted: [string, string][] = [
 // input choices & options
 export const D3_FORMAT_OPTIONS: [string, string][] = [
   [NumberFormats.SMART_NUMBER, t('Adaptive formatting')],
+  ['LOCALE_RUSC', 'RUS $,.2f (12345.432 => 12 345,43 R)'],
+  ['LOCALE_RUS', 'RUS ,.2f (12345.432 => 12 345,43)'],
+  ['LOCALE_RUSA', 'RUS-DOT-1 ,.1f (12345.432 => 12 345,4)'],
+  ['LOCALE_RUSB', 'RUS-INT ,.0f (12345.432 => 12 345)'],
+  ['LOCALE_RUS_P1', 'RUS-P1 ,.1% (12345.432 => 12 345,4%)'],
+  ['LOCALE_RUS_P2', 'RUS-P2 ,.2% (12345.432 => 12 345,43%)'],
   ['~g', t('Original value')],
   ...d3Formatted,
   ['DURATION', t('Duration in ms (66000 => 1m 6s)')],

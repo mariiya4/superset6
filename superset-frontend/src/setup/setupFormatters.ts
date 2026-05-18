@@ -18,6 +18,7 @@
  */
 import {
   createDurationFormatter,
+  createD3NumberFormatter,
   getNumberFormatter,
   getNumberFormatterRegistry,
   NumberFormats,
@@ -91,7 +92,78 @@ export default function setupFormatters(
     .registerValue(
       'MEMORY_TRANSFER_RATE_BINARY',
       createMemoryFormatter({ binary: true, transfer: true }),
-    );
+    )      
+    .registerValue(
+      'LOCALE_RUSC',
+      createD3NumberFormatter({
+        locale: {
+          decimal: ',',
+          thousands: '\u00a0',
+          grouping: [3],
+          currency: ['', '\u00a0\u20bd'],
+        },
+        formatString: '$,.2f',
+      }),
+    )
+    .registerValue(
+      'LOCALE_RUS',
+      createD3NumberFormatter({
+        locale: {
+          decimal: ',',
+          thousands: '\u00a0',
+          grouping: [3],
+          currency: ['', '\u00a0\u20bd'],
+        },
+        formatString: ',.2f',
+      }),
+    )
+    .registerValue(
+      'LOCALE_RUSA',
+      createD3NumberFormatter({
+        locale: {
+          decimal: ',',
+          thousands: '\u00a0',
+          grouping: [3],
+          currency: ['', '\u00a0\u20bd'],
+        },
+        formatString: ',.1f',
+      }),
+    )
+    .registerValue(
+      'LOCALE_RUS_P1',
+      createD3NumberFormatter({
+        locale: {
+          decimal: ',',
+          thousands: '\u00a0',
+          grouping: [3],
+          currency: ['', '\u00a0\u20bd'],
+        },
+        formatString: ',.1%',
+      }),
+    )
+    .registerValue(
+      'LOCALE_RUS_P2',
+      createD3NumberFormatter({
+        locale: {
+          decimal: ',',
+          thousands: '\u00a0',
+          grouping: [3],
+          currency: ['', '\u00a0\u20bd'],
+        },
+        formatString: ',.2%',
+      }),
+    )
+    .registerValue(
+      'LOCALE_RUSB',
+      createD3NumberFormatter({
+        locale: {
+          decimal: ',',
+          thousands: '\u00a0',
+          grouping: [3],
+          currency: ['', '\u00a0\u20bd'],
+        },
+        formatString: ',.0f',
+      }));
 
   const timeFormatterRegistry = getTimeFormatterRegistry();
 

@@ -40,7 +40,9 @@ COPY docker/ /app/docker/
 ARG NPM_BUILD_CMD="build"
 
 # Install system dependencies required for node-gyp
-RUN /app/docker/apt-install.sh build-essential python3 zstd
+RUN apt-get update && \
+    /app/docker/apt-install.sh build-essential python3 zstd && \
+    rm -rf /var/lib/apt/lists/*
 
 # Define environment variables for frontend build
 ENV BUILD_CMD=${NPM_BUILD_CMD} \
@@ -118,7 +120,6 @@ RUN pip install --no-cache-dir --upgrade uv
 # Using uv as it's faster/simpler than pip
 RUN uv venv /app/.venv
 ENV PATH="/app/.venv/bin:${PATH}"
-
 ######################################################################
 # Python translation compiler layer
 ######################################################################
@@ -126,6 +127,14 @@ FROM python-base AS python-translation-compiler
 
 ARG BUILD_TRANSLATIONS
 ENV BUILD_TRANSLATIONS=${BUILD_TRANSLATIONS}
+
+# Установка системных зависимостей для сборки Python-пакетов
+RUN apt-get clean && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        python3-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies using docker/pip-install.sh
 COPY requirements/translations.txt requirements/
@@ -242,10 +251,12 @@ USER superset
 FROM python-common AS dev
 
 # Debian libs needed for dev
-RUN /app/docker/apt-install.sh \
-    git \
-    pkg-config \
-    default-libmysqlclient-dev
+RUN apt-get update && \
+    /app/docker/apt-install.sh \
+        git \
+        pkg-config \
+        default-libmysqlclient-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy development requirements and install them
 COPY requirements/*.txt requirements/

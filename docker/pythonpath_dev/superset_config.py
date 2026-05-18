@@ -70,13 +70,15 @@ RESULTS_BACKEND = FileSystemCache("/app/superset_home/sqllab")
 
 CACHE_CONFIG = {
     "CACHE_TYPE": "RedisCache",
-    "CACHE_DEFAULT_TIMEOUT": 300,
+    "CACHE_DEFAULT_TIMEOUT": 60*60*24,
     "CACHE_KEY_PREFIX": "superset_",
     "CACHE_REDIS_HOST": REDIS_HOST,
     "CACHE_REDIS_PORT": REDIS_PORT,
     "CACHE_REDIS_DB": REDIS_RESULTS_DB,
 }
 DATA_CACHE_CONFIG = CACHE_CONFIG
+FILTER_STATE_CACHE_CONFIG = CACHE_CONFIG
+EXPLORE_FORM_DATA_CACHE_CONFIG = CACHE_CONFIG
 THUMBNAIL_CACHE_CONFIG = CACHE_CONFIG
 
 
@@ -128,9 +130,6 @@ if os.getenv("CYPRESS_CONFIG") == "true":
     from superset_test_config import *  # noqa
 
     sys.path.pop(0)
-
-#PREVIOUS_SECRET_KEY = 'test-secret-key'
-#SECRET_KEY = 'AdLcixY34Pizz'
 
 #FEATURE_FLAGS = {
 #    "ENABLE_WEBSOCKETS": True,

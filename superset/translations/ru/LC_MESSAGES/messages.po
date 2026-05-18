@@ -2824,7 +2824,7 @@ msgid "Chart width"
 msgstr "Ширина диаграммы"
 
 msgid "Charts"
-msgstr "Диаграммы"
+msgstr "Графики"
 
 msgid "Charts could not be deleted."
 msgstr "Не удалось удалить диаграммы"
@@ -16631,3 +16631,6 @@ msgstr "область масштабирования"
 
 msgid "© Layer attribution"
 msgstr "© Настройки слоя"
+
+msgid "{{from}}-{{to}} of {{total}}"
+msgstr "{{from}}-{{to}} из {{total}}"

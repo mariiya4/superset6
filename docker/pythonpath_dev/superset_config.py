@@ -143,6 +143,48 @@ GLOBAL_ASYNC_QUERIES_JWT_SECRET = "L/Xmy6r5uybyAC6K/Sksw+kKi67gPIrVIVGaaHtNtFSjk
 
 #WEBSOCKET_BASEURL = "ws://10.237.1.153/ws"
 
+
+#  Override the default d3 locale for time format
+D3_TIME_FORMAT = {
+    "dateTime": "%A, %e %B %Y г. %X",
+    "date": "%d.%m.%Y",
+    "time": "%H:%M:%S",
+    "periods": ["AM", "PM"],
+    "days": ['воскресенье',
+            'понедельник',
+            'вторник',
+            'среда',
+            'четверг',
+            'пятница',
+            'суббота',],
+    "shortDays": ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
+    "months": [ 'январь',
+                'февраль',
+                'март',
+                'апрель',
+                'май',
+                'июнь',
+                'июль',
+                'август',
+                'сентябрь',
+                'октябрь',
+                'ноябрь',
+                'декабрь',],
+    "shortMonths": ['янв',
+                    'фев',
+                    'мар',
+                    'апр',
+                    'май',
+                    'июн',
+                    'июл',
+                    'авг',
+                    'сен',
+                    'окт',
+                    'ноя',
+                    'дек']}
+
+
+
 #
 # Optionally import superset_config_docker.py (which will have been included on
 # the PYTHONPATH) in order to allow for local settings to be overridden

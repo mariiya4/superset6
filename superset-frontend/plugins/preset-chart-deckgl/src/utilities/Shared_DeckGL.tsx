@@ -71,6 +71,8 @@ export const DEFAULT_MAPBOX_TILES = [
   ['mapbox://styles/mapbox/satellite-streets-v9', 'Satellite Streets (Mapbox)'],
   ['mapbox://styles/mapbox/satellite-v9', 'Satellite (Mapbox)'],
   ['mapbox://styles/mapbox/outdoors-v9', 'Outdoors (Mapbox)'],
+  ['https://core-renderer-tiles.maps.yandex.net/tiles?l=map&v=21.02.16-0&x={x}&y={y}&z={z}&scale=1&lang=ru_RU', 'YandexMap - схема'],
+  ['https://core-sat.maps.yandex.net/tiles?l=sat&v=1.11.30&x={x}&y={y}&z={z}&scale=1&lang=ru_RU', 'YandexMap - спутник']
 ];
 
 const getDeckGLTiles = () => {

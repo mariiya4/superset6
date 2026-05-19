@@ -40,12 +40,7 @@ interface CurrencyFormatter {
 }
 
 export const getCurrencySymbol = (currency: Partial<Currency>) =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currency.symbol,
-  })
-    .formatToParts(1)
-    .find(x => x.type === 'currency')?.value;
+  {return currency.symbol}
 
 export function normalizeCurrency(value: RowDataValue): string | null {
   if (value === null || value === undefined) return null;

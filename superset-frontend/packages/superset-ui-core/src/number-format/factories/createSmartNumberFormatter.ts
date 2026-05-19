@@ -27,6 +27,23 @@ const siFormatter = locale.format(`.3~s`);
 const float2PointFormatter = locale.format(`.2~f`);
 const float4PointFormatter = locale.format(`.4~f`);
 
+export const siFormatterReplaces = [
+  { from: 'G', to: 'B' },
+  { from: 'k', to: ' тыс' },
+  { from: 'M', to: ' млн' },
+  { from: 'B', to: ' млрд' },
+  { from: 'T', to: ' трлн' },
+  { from: 'P', to: ' квадрлн' },
+  { from: 'E', to: ' квинтлн' },
+];
+
+export const replaceAllFormats = (
+  str: string,
+  replaces: { from: string; to: string }[],
+) => replaces.reduce((acc, { from, to }) => acc.replace(from, to), str);
+
+const browserLocale = navigator.language.split('-')[0];
+
 function formatValue(value: number) {
   if (value === 0) {
     return '0';
@@ -35,7 +52,11 @@ function formatValue(value: number) {
   if (absoluteValue >= 1000) {
     // Normal human being are more familiar
     // with billion (B) that giga (G)
-    return siFormatter(value).replace('G', 'B');
+    if (browserLocale === 'ru') {
+      return replaceAllFormats(siFormatter(value), siFormatterReplaces);
+    } else {
+      return siFormatter(value).replace('G', 'B');
+    }
   }
   if (absoluteValue >= 1) {
     return float2PointFormatter(value);

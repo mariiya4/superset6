@@ -524,13 +524,55 @@ def cached_common_bootstrap_data(  # pylint: disable=unused-argument
             )
         frontend_config["AUTH_PROVIDERS"] = saml_providers
 
+    if language == 'ru':
+        D3_TIME_FORMAT = {
+        "dateTime": "%A, %e %B %Y г. %X",
+        "date": "%d.%m.%Y",
+        "time": "%H:%M:%S",
+        "periods": ["AM", "PM"],
+        "days": ['воскресенье',
+                'понедельник',
+                'вторник',
+                'среда',
+                'четверг',
+                'пятница',
+                'суббота',],
+        "shortDays": ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
+        "months": [ 'январь',
+                    'февраль',
+                    'март',
+                    'апрель',
+                    'май',
+                    'июнь',
+                    'июль',
+                    'август',
+                    'сентябрь',
+                    'октябрь',
+                    'ноябрь',
+                    'декабрь',],
+        "shortMonths": ['янв',
+                        'фев',
+                        'мар',
+                        'апр',
+                        'май',
+                        'июн',
+                        'июл',
+                        'авг',
+                        'сен',
+                        'окт',
+                        'ноя',
+                        'дек']
+        }
+    else:
+        D3_TIME_FORMAT = app.config.get("D3_TIME_FORMAT")
+
     bootstrap_data = {
         "application_root": app.config["APPLICATION_ROOT"],
         "static_assets_prefix": app.config["STATIC_ASSETS_PREFIX"],
         "conf": frontend_config,
         "locale": language,
         "d3_format": app.config.get("D3_FORMAT"),
-        "d3_time_format": app.config.get("D3_TIME_FORMAT"),
+        "d3_time_format": D3_TIME_FORMAT,#app.config.get("D3_TIME_FORMAT"),
         "currencies": app.config.get("CURRENCIES"),
         "deckgl_tiles": app.config.get("DECKGL_BASE_MAP"),
         "feature_flags": get_feature_flags(),

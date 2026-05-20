@@ -25,8 +25,6 @@ import {
 import { utcUtils, localTimeUtils } from '../utils/d3Time';
 import TimeFormatter from '../TimeFormatter';
 
-const browserLocale = navigator.language.split('-')[0];
-
 type FormatsByStep = Partial<{
   millisecond: string;
   second: string;
@@ -68,58 +66,6 @@ export default function createMultiFormatter({
 
   if (typeof locale === 'undefined') {
     formatFunc = useLocalTime ? timeFormat : utcFormat;
-
-    const ruLocale = timeFormatLocale({
-    dateTime: '%A, %e %B %Y г. %X',
-    date: '%d.%m.%Y',
-    time: '%H:%M:%S',
-    periods: ['AM', 'PM'],
-    days: [
-      'воскресенье',
-      'понедельник',
-      'вторник',
-      'среда',
-      'четверг',
-      'пятница',
-      'суббота',
-    ],
-    shortDays: ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
-    months: [
-      'январь',
-      'февраль',
-      'март',
-      'апрель',
-      'май',
-      'июнь',
-      'июль',
-      'август',
-      'сентябрь',
-      'октябрь',
-      'ноябрь',
-      'декабрь',
-    ],
-    shortMonths: [
-      'янв',
-      'фев',
-      'мар',
-      'апр',
-      'май',
-      'июн',
-      'июл',
-      'авг',
-      'сен',
-      'окт',
-      'ноя',
-      'дек',
-    ],
-  });
-  
-  let format;
-    if (browserLocale === 'ru') {
-      format = useLocalTime ? ruLocale.format : ruLocale.utcFormat;
-    } else {
-      format = useLocalTime ? timeFormat : utcFormat;
-    }
   } else {
     const formatLocale = timeFormatLocale(locale);
     formatFunc = useLocalTime ? formatLocale.format : formatLocale.utcFormat;

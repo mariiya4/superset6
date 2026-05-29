@@ -563,8 +563,8 @@ def cached_common_bootstrap_data(  # pylint: disable=unused-argument
                         'ноя',
                         'дек']
         }
-    #else:
-    #    D3_TIME_FORMAT = app.config.get("D3_TIME_FORMAT")
+    else:
+        D3_TIME_FORMAT = {}
 
     bootstrap_data = {
         "application_root": app.config["APPLICATION_ROOT"],
